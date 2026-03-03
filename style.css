@@ -1,0 +1,310 @@
+:root {
+  --primary: #3b82f6;
+  --bg: #020814;
+  --card-glass: rgba(10, 30, 70, 0.4);
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+  color: #fff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  line-height: 1.4;
+}
+
+/* FUNDO GRID */
+.background-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  mask-image: radial-gradient(circle, black, transparent 90%);
+}
+
+.mobile-wrapper {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* HEADER */
+.profile-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.main-avatar {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  padding: 4px;
+}
+
+.main-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.profile-header p {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* LINKS GRID */
+.links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.link-card {
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.badge {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+strong {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+/* CARD PRINCIPAL */
+.featured {
+  height: 260px;
+  display: flex;
+  align-items: flex-end;
+  padding: 25px;
+}
+
+.abs-img {
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  height: 100%;
+  z-index: -1;
+  -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%);
+  mask-image: linear-gradient(to left, black 50%, transparent 100%);
+}
+
+.btn-main {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 11px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+/* CARDS COM FOTO LATERAL */
+.ebook-card-with-photo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 30px;
+  min-height: 220px;
+}
+
+.ebook-card-with-photo .card-content {
+  flex: none;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.ebook-card-with-photo .card-content p {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 15px;
+}
+
+.price-action {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  letter-spacing: -1px;
+  width: fit-content;
+}
+
+.ebook-img {
+  position: absolute;
+  left: -15px;
+  bottom: 0;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+  transition: transform 0.3s ease;
+  -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+  mask-image: linear-gradient(to right, black 60%, transparent 100%);
+}
+
+/* VARIAÇÃO: FOTO NA DIREITA */
+.ebook-card-with-photo.photo-right {
+  justify-content: flex-start;
+}
+
+.ebook-card-with-photo.photo-right .card-content {
+  text-align: left;
+}
+
+.ebook-card-with-photo.photo-right .ebook-img {
+  right: -15px;
+  left: auto;
+  -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
+  mask-image: linear-gradient(to left, black 60%, transparent 100%);
+}
+
+/* CARD LISTA / BIO */
+.list-style {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  gap: 15px;
+}
+.list-photo-wrapper {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--primary);
+  overflow: hidden;
+}
+.list-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.list-text p {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.bio-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent);
+  border-radius: 28px;
+  padding: 30px;
+  border: 1px solid var(--border);
+}
+.bio-label {
+  font-size: 10px;
+  color: var(--primary);
+  font-weight: 800;
+  margin-bottom: 10px;
+  display: block;
+}
+.trust-pills {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.trust-pills span {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+/* =========================================
+   RODAPÉ ULTRA-MINIMALISTA (SEM CÍRCULO)
+   ========================================= */
+.footer-premium {
+  text-align: center;
+  margin-top: 90px; /* Grande respiro para separar do conteúdo */
+  padding-bottom: 50px;
+}
+
+.was-link {
+  display: inline-flex;
+  align-items: center; /* Alinha o texto e a logo no meio horizontalmente */
+  gap: 15px; /* Espaçamento entre o texto e a logo */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-tag {
+  font-size: 8px; /* Texto minúsculo e elegante */
+  color: #fff;
+  letter-spacing: 3px; /* Espaçamento que traz o ar "Premium" */
+  font-weight: 700;
+  opacity: 0.3; /* Quase uma marca d'água para não roubar a cena */
+  white-space: nowrap;
+}
+
+.footer-logo {
+  width: 50px; /* Tamanho discreto e profissional */
+  height: auto;
+  opacity: 0.6;
+  filter: brightness(1.5); /* Garante que a logo fique nítida no fundo escuro */
+  transition: all 0.4s ease;
+}
+
+/* Interação sutil */
+.was-link:hover .footer-logo {
+  opacity: 1;
+  transform: scale(1.05); /* Leve zoom ao interagir */
+  filter: drop-shadow(
+    0 0 10px rgba(59, 130, 246, 0.4)
+  ); /* Brilho azul da sua marca */
+}
+
+.was-link:hover .footer-tag {
+  opacity: 0.6;
+}
