@@ -107,6 +107,7 @@ strong {
 .featured .card-text {
   z-index: 2;
   position: relative;
+  width: 190px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -125,12 +126,21 @@ strong {
 
 .abs-img {
   position: absolute;
-  right: -10px;
+  right: -80px;
   bottom: 0;
   height: 100%;
   z-index: 1;
-  -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%);
-  mask-image: linear-gradient(to left, black 50%, transparent 100%);
+
+  /* Mágica da Dupla Transparência (Esquerda + Baixo) */
+  -webkit-mask-image:
+    linear-gradient(to left, black 40%, transparent 100%),
+    linear-gradient(to top, transparent 0%, black 45%);
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(to left, black 40%, transparent 100%),
+    linear-gradient(to top, transparent 0%, black 45%);
+  mask-composite: intersect;
 }
 
 .btn-main {
@@ -168,9 +178,10 @@ strong {
 
 .links-wrapper .card-trust-pills {
   display: flex;
+  flex-direction: column; /* Coloca um item debaixo do outro */
+  align-items: flex-start; /* Mantém os botões curtinhos alinhados à esquerda */
   gap: 8px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 .links-wrapper .card-trust-pills span {
   font-size: 8px;
@@ -214,13 +225,22 @@ strong {
 
 .ebook-img {
   position: absolute;
-  left: -15px;
+  left: -45px;
   bottom: 0;
   height: 100%;
   object-fit: contain;
   z-index: 1;
-  -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
-  mask-image: linear-gradient(to right, black 60%, transparent 100%);
+
+  /* Mágica da Dupla Transparência (Direita + Baixo) */
+  -webkit-mask-image:
+    linear-gradient(to right, black 60%, transparent 100%),
+    linear-gradient(to top, transparent 0%, black 45%);
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(to right, black 60%, transparent 100%),
+    linear-gradient(to top, transparent 0%, black 45%);
+  mask-composite: intersect;
 }
 
 /* VARIAÇÃO: FOTO NA DIREITA */
@@ -233,30 +253,31 @@ strong {
 .ebook-card-with-photo.photo-right .ebook-img {
   right: -15px;
   left: auto;
-  -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
-  mask-image: linear-gradient(to left, black 60%, transparent 100%);
+
+  /* Mágica da Dupla Transparência (Esquerda + Baixo) */
+  -webkit-mask-image:
+    linear-gradient(to left, black 60%, transparent 100%),
+    linear-gradient(to top, transparent 0%, black 45%);
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(to left, black 60%, transparent 100%),
+    linear-gradient(to top, transparent 0%, black 45%);
+  mask-composite: intersect;
 }
 
 /* =========================================
-   FINAL: SOBRE (CARD DE AUTORIDADE GLASSMORPHISM)
+   FINAL: SOBRE (ESTILO POSTER EDITORIAL)
    ========================================= */
 .bio-wendell-layout {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-
-  /* Transformando a seção inteira em um Card Premium */
-  background: var(--card-glass);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 24px;
-  overflow: hidden; /* Faz a foto respeitar as bordas arredondadas do card */
 }
 
 .bio-image-col {
   width: 100%;
-  height: 380px; /* Altura controlada para não tomar a tela toda no mobile */
+  height: 420px; /* Altura imponente no mobile */
   position: relative;
 }
 
@@ -265,14 +286,19 @@ strong {
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  /* Sem nenhum degradê, foto 100% nítida */
+
+  /* A MÁGICA DO POSTER: Arredonda só em cima, corta reto embaixo */
+  border-radius: 24px 24px 0 0;
+
+  /* Transforma o corte seco em um elemento de design premium */
+  border-bottom: 3px solid var(--primary);
 }
 
 .bio-text-col {
-  padding: 35px 25px 45px; /* Muito respiro interno para o texto não colar nas bordas */
-  margin-top: 0; /* Zerado, pois o padding já afasta da foto */
+  padding: 30px 10px 0; /* Respiro logo abaixo da linha dourada */
   position: relative;
   z-index: 2;
+  text-align: left;
 }
 
 .bio-label {
@@ -284,7 +310,6 @@ strong {
 }
 
 .title-gold {
-  color: var(--gold);
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 20px;
@@ -362,20 +387,22 @@ strong {
 @media (min-width: 800px) {
   .bio-wendell-layout {
     flex-direction: row;
-    align-items: stretch; /* Estica as colunas para terem a mesma altura */
+    align-items: center;
     margin-top: 60px;
+    gap: 50px;
   }
   .bio-image-col {
     width: 45%;
-    height: auto;
-    min-height: 450px;
+    height: 550px;
+  }
+  .bio-image-col img {
+    border-radius: 24px; /* No PC pode arredondar tudo e virar um quadro */
+    border-bottom: none; /* Tira a linha no PC */
+    border: 1px solid var(--border); /* Borda fina em volta de tudo no PC */
   }
   .bio-text-col {
     width: 55%;
-    padding: 50px 40px;
-  }
-  .title-gold {
-    font-size: 3rem;
+    padding: 0;
   }
 }
 
@@ -390,4 +417,55 @@ strong {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =========================================
+   CARD WHATSAPP (MENTORIA)
+   ========================================= */
+.whatsapp-card {
+  padding: 40px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.whatsapp-card .card-content {
+  width: 100%; /* Ocupa o espaço onde antes ficava a foto */
+  text-align: center;
+  align-items: center; /* Centraliza o texto e o botão */
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 12px 24px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-card:hover .btn-whatsapp {
+  transform: scale(1.05);
+}
+
+/* Animação de Pulso Premium para o WhatsApp */
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.btn-whatsapp {
+  /* Seu CSS anterior já está aqui... */
+  animation: pulse-green 2s infinite; /* Adicione apenas esta linha na classe existente */
 }
