@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       root: null,
-      threshold: 0.12, // Dispara quando 12% do card aparece
-      rootMargin: "0px 0px -30px 0px",
+      threshold: 0.01, // Dispara com apenas 1% de visibilidade (quase imediato)
+      rootMargin: "0px 0px 50px 0px", // Gatilho dispara 50px ANTES de entrar na tela
     },
   );
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bgGrid) {
       const scrollY = window.scrollY;
       // Move o fundo 15% da velocidade do scroll real
-      bgGrid.style.transform = `translateY(${scrollY * 0.15}px)`;
+      bgGrid.style.transform = `translateY(${scrollY * 15}px)`;
     }
   });
 });
