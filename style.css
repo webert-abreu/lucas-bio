@@ -1,5 +1,6 @@
 :root {
   --primary: #3b82f6;
+  --gold: #eab308;
   --bg: #020814;
   --card-glass: rgba(10, 30, 70, 0.4);
   --border: rgba(255, 255, 255, 0.08);
@@ -17,9 +18,12 @@ body {
   color: #fff;
   font-family: "Plus Jakarta Sans", sans-serif;
   line-height: 1.4;
+  overflow-x: hidden;
 }
 
-/* FUNDO GRID */
+/* =========================================
+   FUNDO GRID Original
+   ========================================= */
 .background-grid {
   position: fixed;
   top: 0;
@@ -34,48 +38,19 @@ body {
   mask-image: radial-gradient(circle, black, transparent 90%);
 }
 
-.mobile-wrapper {
+.main-container {
   width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   TOPO: GRID DE LINKS DIRETOS
+   ========================================= */
+.links-wrapper {
   max-width: 450px;
   margin: 0 auto;
-  padding: 30px 20px;
-}
-
-/* HEADER */
-.profile-header {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.main-avatar {
-  width: 85px;
-  height: 85px;
-  margin: 0 auto 15px;
-  border-radius: 50%;
-  border: 2px solid var(--primary);
-  padding: 4px;
-}
-
-.main-avatar img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-h1 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
-.profile-header p {
-  font-size: 0.9rem;
-  opacity: 0.6;
-}
-
-/* LINKS GRID */
-.links-grid {
+  padding: 40px 20px 40px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -87,6 +62,7 @@ h1 {
   background: var(--card-glass);
   border: 1px solid var(--border);
   backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: 24px;
   position: relative;
   overflow: hidden;
@@ -100,6 +76,7 @@ h1 {
   letter-spacing: 1.5px;
   display: block;
   margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -117,12 +94,33 @@ strong {
   font-weight: 800;
 }
 
-/* CARD PRINCIPAL */
+/* =========================================
+   CARD PRINCIPAL PERSUASIVO
+   ========================================= */
 .featured {
-  height: 260px;
+  min-height: 320px;
   display: flex;
   align-items: flex-end;
-  padding: 25px;
+  padding: 30px;
+}
+
+.featured .card-text {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* NOVA CLASSE PARA ALINHAMENTO À DIREITA */
+.featured.copy-right .card-text {
+  text-align: left; /* Alinha o fluxo do texto para a direita */
+  align-items: flex-start; /* Garante que os elementos flex (como o botão) vão para a direita */
+}
+
+.featured h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
 }
 
 .abs-img {
@@ -130,7 +128,7 @@ strong {
   right: -10px;
   bottom: 0;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
   -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%);
   mask-image: linear-gradient(to left, black 50%, transparent 100%);
 }
@@ -147,27 +145,63 @@ strong {
   cursor: pointer;
 }
 
-/* CARDS COM FOTO LATERAL */
+/* =========================================
+   CARDS COM FOTO LATERAL (MELHORADOS)
+   ========================================= */
 .ebook-card-with-photo {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Padrão: conteúdo na direita */
   padding: 30px;
   min-height: 220px;
 }
 
-.ebook-card-with-photo .card-content {
-  flex: none;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
+/* Classe genérica para copy persuasiva nos cards menores */
+.links-wrapper .problem-solution-text {
+  margin-bottom: 15px;
+}
+.links-wrapper .problem-solution-text p {
+  font-size: 0.8rem;
+  color: #fff;
+  opacity: 0.8;
+  line-height: 1.5;
 }
 
-.ebook-card-with-photo .card-content p {
-  font-size: 0.8rem;
-  opacity: 0.7;
-  margin-bottom: 15px;
+/* Classe genérica para trust pills nos cards menores */
+.links-wrapper .card-trust-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.links-wrapper .card-trust-pills span {
+  font-size: 8px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+}
+
+.ebook-card-with-photo .card-content {
+  flex: none;
+  width: 67%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  gap: 15px;
+  text-align: left; /* Padrão à esquerda */
+}
+
+/* --- AJUSTE: E-BOOK copy-right (Texto na Direita, alinhado à Direita) --- */
+.ebook-card-with-photo.copy-right .card-content {
+  text-align: right; /* Alinha o texto para a direita */
+  align-items: flex-end; /* Coloca o preço e os checks na direita */
+}
+
+/* Garante que os pills irem para a direita na cópia alinhada */
+.ebook-card-with-photo.copy-right .card-trust-pills {
+  justify-content: flex-end;
 }
 
 .price-action {
@@ -188,8 +222,7 @@ strong {
   bottom: 0;
   height: 100%;
   object-fit: contain;
-  z-index: 0;
-  transition: transform 0.3s ease;
+  z-index: 1;
   -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
   mask-image: linear-gradient(to right, black 60%, transparent 100%);
 }
@@ -198,11 +231,9 @@ strong {
 .ebook-card-with-photo.photo-right {
   justify-content: flex-start;
 }
-
 .ebook-card-with-photo.photo-right .card-content {
   text-align: left;
 }
-
 .ebook-card-with-photo.photo-right .ebook-img {
   right: -15px;
   left: auto;
@@ -210,38 +241,45 @@ strong {
   mask-image: linear-gradient(to left, black 60%, transparent 100%);
 }
 
-/* CARD LISTA / BIO */
-.list-style {
+/* =========================================
+   FINAL: SOBRE (ESTILO WENDELL)
+   ========================================= */
+.bio-wendell-layout {
   display: flex;
-  align-items: center;
-  padding: 18px 20px;
-  gap: 15px;
+  flex-direction: column;
+  margin-top: 30px;
 }
-.list-photo-wrapper {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--primary);
-  overflow: hidden;
+
+.bio-image-col {
+  width: 100%;
+  height: 55vh;
+  position: relative;
 }
-.list-photo-wrapper img {
+
+.bio-image-col img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.list-text p {
-  font-size: 0.85rem;
-  font-weight: 600;
-  opacity: 0.9;
+  object-position: top center;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
-.bio-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent);
-  border-radius: 28px;
-  padding: 30px;
-  border: 1px solid var(--border);
+.bio-text-col {
+  padding: 0 25px;
+  margin-top: -80px;
+  position: relative;
+  z-index: 2;
 }
+
 .bio-label {
   font-size: 10px;
   color: var(--primary);
@@ -249,62 +287,125 @@ strong {
   margin-bottom: 10px;
   display: block;
 }
+
+.title-gold {
+  color: var(--gold);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.bio-text-col p {
+  font-size: 0.95rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.bio-text-col strong {
+  color: #fff;
+  font-weight: 800;
+}
+
 .trust-pills {
   display: flex;
   gap: 10px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 .trust-pills span {
   font-size: 10px;
   font-weight: 700;
   background: rgba(255, 255, 255, 0.05);
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
+  border: 1px solid var(--border);
 }
 
 /* =========================================
-   RODAPÉ ULTRA-MINIMALISTA (SEM CÍRCULO)
+   RODAPÉ MINIMALISTA WAS VENTURE Original
    ========================================= */
 .footer-premium {
   text-align: center;
-  margin-top: 90px; /* Grande respiro para separar do conteúdo */
+  margin-top: 60px;
   padding-bottom: 50px;
 }
-
 .was-link {
   display: inline-flex;
-  align-items: center; /* Alinha o texto e a logo no meio horizontalmente */
-  gap: 15px; /* Espaçamento entre o texto e a logo */
+  align-items: center;
+  gap: 15px;
   text-decoration: none;
   transition: all 0.3s ease;
 }
-
 .footer-tag {
-  font-size: 8px; /* Texto minúsculo e elegante */
+  font-size: 8px;
   color: #fff;
-  letter-spacing: 3px; /* Espaçamento que traz o ar "Premium" */
+  letter-spacing: 3px;
   font-weight: 700;
-  opacity: 0.3; /* Quase uma marca d'água para não roubar a cena */
+  opacity: 0.3;
   white-space: nowrap;
 }
-
 .footer-logo {
-  width: 50px; /* Tamanho discreto e profissional */
+  width: 50px;
   height: auto;
   opacity: 0.6;
-  filter: brightness(1.5); /* Garante que a logo fique nítida no fundo escuro */
+  filter: brightness(1.5);
   transition: all 0.4s ease;
 }
-
-/* Interação sutil */
 .was-link:hover .footer-logo {
   opacity: 1;
-  transform: scale(1.05); /* Leve zoom ao interagir */
-  filter: drop-shadow(
-    0 0 10px rgba(59, 130, 246, 0.4)
-  ); /* Brilho azul da sua marca */
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
 }
-
 .was-link:hover .footer-tag {
   opacity: 0.6;
+}
+
+/* =========================================
+   MEDIA QUERIES (DESKTOP)
+   ========================================= */
+@media (min-width: 800px) {
+  .bio-wendell-layout {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 60px;
+  }
+  .bio-image-col {
+    width: 50%;
+    height: 65vh;
+  }
+  .bio-image-col img {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  .bio-text-col {
+    width: 50%;
+    margin-top: 0;
+    padding-left: 20px;
+    padding-right: 40px;
+  }
+  .title-gold {
+    font-size: 3rem;
+  }
+}
+
+/* =========================================
+   ANIMAÇÕES JS
+   ========================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
