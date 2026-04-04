@@ -345,6 +345,14 @@
   width: fit-content;
   margin-bottom: 20px;
 }
+
+/* Ajuste exclusivo para quando houver apenas 2 cartões de Bônus */
+.bonus-grid.two-cards {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 800px; /* Impede que fiquem gigantes e esticados */
+  margin: 0 auto; /* Centraliza no meio da tela */
+} 
+
 .bonus-title {
   font-size: 1.5rem;
   margin-bottom: 15px;
