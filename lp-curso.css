@@ -51,6 +51,33 @@
   margin-inline: auto;
 }
 
+/* --- BARRA DE URGÊNCIA NO TOPO (ESCASSEZ) --- */
+.top-urgency-bar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #ef4444;
+  color: #fff;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  z-index: 1000;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+}
+
+.top-urgency-bar strong {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-left: 8px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
+
 /* --- HERO SECTION REFORMULADA --- */
 .hero-section {
   position: relative;
@@ -66,6 +93,7 @@
   display: flex;
   width: 100%;
   z-index: 2;
+  align-items: center;
 }
 
 .hero-content-left {
@@ -89,9 +117,11 @@
   line-height: 1.1;
   font-weight: 900;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #f97316 0%, #fbbf24 100%);
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
   text-transform: uppercase;
   letter-spacing: -1px;
 }
@@ -126,13 +156,13 @@
   width: fit-content;
 }
 
-.btn-hero-white {
+.btn-hero-green {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: #fff;
-  color: #000;
+  background: #22c55e;
+  color: #fff;
   font-weight: 900;
   font-size: 1.1rem;
   padding: 16px 30px;
@@ -141,26 +171,29 @@
   width: fit-content;
   text-transform: uppercase;
   margin-bottom: 15px;
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
   transition: transform 0.3s;
 }
 
-.btn-hero-white:hover {
+.btn-hero-green:hover {
   transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.5);
 }
 
-.hero-timer {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-top: 5px;
+.pulse-animation-green {
+  animation: pulse-green 3s infinite;
 }
 
-.hero-timer strong {
-  color: #fff;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 2px;
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
 }
 
 .hero-image-right {
@@ -174,14 +207,13 @@
   align-items: flex-end;
 }
 
-/* Degradê duplo na imagem do Lucas */
+/* Mascara gradiente da foto no Desktop (apaga lado esquerdo) */
 .hero-image-right img {
   width: 100%;
   height: auto;
   max-height: 100%;
   object-fit: contain;
   object-position: bottom right;
-  /* Apaga a borda esquerda */
   -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
   mask-image: linear-gradient(to left, black 60%, transparent 100%);
 }
@@ -193,7 +225,6 @@
   left: 0;
   width: 100%;
   height: 25%;
-  /* Sombra que vem de baixo para apagar o corte inferior */
   background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
   z-index: 2;
   pointer-events: none;
@@ -437,6 +468,14 @@
   font-size: 1.1rem;
   color: var(--text-body);
 }
+.btn-green {
+  background: #22c55e !important;
+  color: #fff !important;
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3) !important;
+}
+.btn-green:hover {
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.5) !important;
+}
 .btn-huge {
   display: flex;
   width: 100%;
@@ -446,23 +485,37 @@
   font-size: 1.3rem;
   border-radius: 16px;
   margin-bottom: 15px;
-  background: var(--primary);
-  color: #fff;
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 800;
+}
+.secure-payment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #22c55e;
+  font-weight: 700;
+  margin-top: -5px;
+  margin-bottom: 20px;
 }
 .garantia-box {
   background: rgba(0, 0, 0, 0.3);
   padding: 40px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 25px;
   text-align: left;
   border-top: 1px solid var(--border);
 }
-.garantia-icon {
+.garantia-selo {
   flex-shrink: 0;
+}
+.garantia-selo img {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(251, 191, 36, 0.2));
 }
 .garantia-text strong {
   display: block;
@@ -477,7 +530,6 @@
   margin: 0;
 }
 
-/* Animações */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -492,287 +544,27 @@
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
-.pulse-animation {
-  animation: pulse-primary 3s infinite;
-}
-@keyframes pulse-primary {
-  0% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-  }
-}
 
-/* --- RESPONSIVIDADE (MOBILE) --- */
-@media (max-width: 992px) {
-  .hero-section {
-    padding-top: 80px;
-  }
-  .hero-title-gradient {
-    font-size: 2rem;
-  }
-  .hero-content-left {
-    width: 70%;
-  }
-  .hero-image-right {
-    width: 60%;
-    right: -15px;
-  }
-  .btn-hero-white {
-    width: 100%;
-    font-size: 1rem;
-    padding: 18px 20px;
-    text-align: center;
-  }
-  .hero-timer {
-    text-align: center;
-    width: 100%;
-  }
-
-  .target-grid,
-  .modules-grid,
-  .bonus-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .author-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .author-content {
-    text-align: left;
-  }
-
-  .offer-box {
-    margin: 0 15px;
-  }
-  .offer-header {
-    padding: 40px 20px 20px;
-  }
-  .offer-title {
-    font-size: 2.2rem;
-  }
-  .offer-body {
-    padding: 30px 20px;
-  }
-  .new-price {
-    font-size: 3rem;
-  }
-  .btn-huge {
-    font-size: 1.1rem;
-    padding: 20px;
-  }
-  .garantia-box {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    padding: 30px 20px;
-  }
-}
-
-/* =========================================
-   FOOTER SUTIL / MINIMALISTA
-   ========================================= */
-
+/* --- FOOTER SUTIL / MINIMALISTA --- */
 .footer-minimal {
   padding: 40px 0 30px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha divisória quase invisível */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   margin-top: 40px;
 }
-
 .footer-minimal-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4); /* Cinza sutil para não roubar a atenção */
+  color: rgba(255, 255, 255, 0.4);
   font-weight: 600;
 }
-
 .footer-version {
-  font-family: monospace; /* Fonte mais técnica para a versão */
+  font-family: monospace;
   letter-spacing: 1px;
 }
 
-/* Responsividade para o celular (empilha os dois textos) */
-@media (max-width: 600px) {
-  .footer-minimal-flex {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-}
-
-/* TÍTULO EM AZUL (Identidade WAS Venture) */
-.hero-title-gradient {
-  font-size: 2.5rem;
-  line-height: 1.1;
-  font-weight: 900;
-  margin-bottom: 20px;
-  /* Gradiente azul vibrante */
-  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-}
-
-/* BOTÃO VERDE DE ALTA CONVERSÃO */
-.btn-hero-green {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: #22c55e; /* Verde conversão Hotmart/Kiwify */
-  color: #fff; /* Texto branco para dar contraste */
-  font-weight: 900;
-  font-size: 1.1rem;
-  padding: 16px 30px;
-  border-radius: 12px;
-  text-decoration: none;
-  width: fit-content;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); /* Glow verde */
-  transition: transform 0.3s;
-}
-
-.btn-hero-green:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.5);
-}
-
-/* ANIMAÇÃO DE PULSO VERDE PARA O BOTÃO */
-.pulse-animation-green {
-  animation: pulse-green 3s infinite;
-}
-
-@keyframes pulse-green {
-  0% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-  }
-}
-
-/* Ajuste Mobile para o Botão Verde */
-@media (max-width: 768px) {
-  .hero-title-gradient {
-    font-size: 2rem;
-  }
-  .btn-hero-green {
-    width: 100%;
-    font-size: 1rem;
-    padding: 18px 20px;
-    text-align: center;
-  }
-}
-
-/* =========================================
-   BARRA DE URGÊNCIA NO TOPO (ESCASSEZ)
-   ========================================= */
-.top-urgency-bar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background: #ef4444; /* Vermelho alerta forte */
-  color: #fff;
-  text-align: center;
-  padding: 12px 20px;
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  z-index: 1000; /* Garante que fique acima de tudo */
-  text-transform: uppercase;
-  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4); /* Glow vermelho sutil */
-}
-
-.top-urgency-bar strong {
-  background: rgba(0, 0, 0, 0.2); /* Fundo escurinho só nos números */
-  padding: 4px 8px;
-  border-radius: 6px;
-  margin-left: 8px;
-  font-variant-numeric: tabular-nums; /* Mantém os números alinhados sem tremer */
-  letter-spacing: 2px;
-  font-size: 1rem;
-}
-
-/* =========================================
-   OFERTA FINAL: BOTÃO VERDE E SELO
-   ========================================= */
-
-/* Forçando o botão gigante a ser verde */
-.btn-green {
-  background: #22c55e !important;
-  color: #fff !important;
-  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3) !important;
-}
-
-.btn-green:hover {
-  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.5) !important;
-}
-
-/* Texto de pagamento seguro debaixo do botão */
-.secure-payment {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: #22c55e;
-  font-weight: 700;
-  margin-top: -5px;
-  margin-bottom: 20px;
-}
-
-/* Ajuste do Selo de Garantia em Imagem */
-.garantia-box {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 30px 40px;
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  text-align: left;
-  border-top: 1px solid var(--border);
-}
-
-.garantia-selo {
-  flex-shrink: 0;
-}
-
-.garantia-selo img {
-  width: 100px; /* Tamanho ideal para dar destaque sem exagerar */
-  height: auto;
-  filter: drop-shadow(
-    0 10px 20px rgba(251, 191, 36, 0.2)
-  ); /* Brilho dourado sutil no selo */
-}
-
-/* Ajuste para o celular */
-@media (max-width: 768px) {
-  .garantia-box {
-    flex-direction: column;
-    text-align: center;
-    padding: 30px 20px;
-  }
-
-  .garantia-selo img {
-    width: 90px;
-  }
-}
-
-/* =========================================
-   SISTEMA DE NOTIFICAÇÕES (PROVA SOCIAL)
-   ========================================= */
-
+/* --- SISTEMA DE NOTIFICAÇÕES (PROVA SOCIAL) --- */
 .sales-notification {
   position: fixed;
   bottom: 30px;
@@ -788,61 +580,408 @@
   gap: 15px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   z-index: 9999;
-
-  /* Escondido por defeito */
   opacity: 0;
   pointer-events: none;
   transform: translateY(50px) scale(0.9);
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Efeito de mola */
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-
 .sales-notification.show {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-
 .notification-icon svg {
   width: 35px;
   height: 35px;
   filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.4));
 }
-
 .notification-content {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-
 .notify-name {
   color: #fff;
   font-size: 0.95rem;
   font-weight: 400;
 }
-
 .notify-name strong {
   font-weight: 800;
-  color: var(--primary); /* Azul da WAS Venture */
+  color: var(--primary);
 }
-
 .notify-action {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.85rem;
   font-weight: 600;
 }
-
 .notify-time {
-  color: #22c55e; /* Verde para destacar o tempo */
+  color: #22c55e;
   font-size: 0.75rem;
   font-weight: 700;
   margin-top: 2px;
 }
 
-/* Responsividade (Telemóvel) */
+/* =========================================
+   RESPONSIVIDADE TOTAL (TELEMÓVEIS E TABLETS)
+   ========================================= */
+@media (max-width: 992px) {
+  .hero-section {
+    padding-top: 40px;
+    min-height: auto;
+  }
+
+  .hero-container-mobile {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  /* 1. JOGA A FOTO PARA O TOPO NO CELULAR */
+  .hero-image-right {
+    order: -1;
+    position: relative;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -40px; /* Puxa o título para cima do degradê da foto */
+    margin-top: 20px;
+    z-index: 1;
+  }
+
+  /* 2. BORDA EM DEGRADÊ NA PARTE DE BAIXO DA FOTO (Celular) */
+  .hero-image-right img {
+    max-width: 85%;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+
+  /* 3. MANTÉM O TEXTO EMBAIXO DA FOTO */
+  .hero-content-left {
+    order: 2;
+    width: 100%;
+    z-index: 3;
+    position: relative;
+  }
+
+  .hero-text-block p {
+    max-width: 100%;
+    margin: 0 auto 15px auto;
+  }
+  .hero-trust-pills {
+    align-items: center;
+  }
+
+  /* Ajustes das outras seções */
+  .target-grid,
+  .modules-grid,
+  .bonus-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .author-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+  }
+  .author-content {
+    align-items: center;
+  }
+
+  .offer-box {
+    margin: 0 15px;
+  }
+  .offer-header {
+    padding: 40px 20px 20px;
+  }
+  .offer-body {
+    padding: 30px 20px;
+  }
+
+  .garantia-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+}
+
 @media (max-width: 768px) {
+  .section-title {
+    font-size: 2.2rem;
+  }
+  .hero-title-gradient {
+    font-size: 2rem;
+  }
+  .btn-hero-green {
+    width: 100%;
+    padding: 18px 20px;
+  }
+
+  .offer-title {
+    font-size: 2rem;
+  }
+  .new-price {
+    font-size: 2.8rem;
+  }
+  .btn-huge {
+    font-size: 1.1rem;
+    padding: 20px;
+  }
+  .offer-list li {
+    font-size: 1rem;
+    align-items: flex-start;
+  }
+
   .sales-notification {
-    bottom: 20px;
-    left: 20px;
-    right: 20px; /* Estica em ecrãs pequenos */
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
     padding: 14px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-minimal-flex {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-title-gradient {
+    font-size: 1.8rem;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .new-price {
+    font-size: 2.2rem;
+  }
+}
+
+/* =========================================
+   NOVA SEÇÃO DE OFERTA (ESTILO TICKET MAX)
+   ========================================= */
+
+.ticket-offer-section {
+  padding: 80px 0 120px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Textos do Topo */
+.ticket-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+}
+
+.title-gold {
+  color: #d4af37; /* Dourado premium */
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  letter-spacing: -1px;
+}
+
+.ticket-intro p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* --- BARRA DE PROGRESSO ANIMADA --- */
+.progress-wrapper {
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  position: relative;
+  z-index: 5;
+}
+
+.progress-bar-bg {
+  background: #e0e0e0;
+  border-radius: 30px;
+  height: 40px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.progress-fill {
+  background-color: #cda24b; /* Fundo Dourado da barra */
+  height: 100%;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  white-space: nowrap;
+}
+
+.progress-text {
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+/* Animação das listras mexendo na barra */
+.animated-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 75px 75px;
+  animation: move-stripes 2s linear infinite;
+}
+
+@keyframes move-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 0;
+  }
+}
+
+/* --- TICKET BRANCO --- */
+.ticket-card {
+  background: #ffffff;
+  max-width: 500px;
+  margin: -10px auto 0 auto; /* Sobe um pouco para ficar atrás da barra */
+  border-radius: 24px;
+  padding: 50px 40px 40px 40px;
+  text-align: center;
+  color: #111; /* Texto escuro pois o fundo é branco */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 4;
+}
+
+.ticket-top {
+  margin-bottom: 20px;
+}
+
+.ticket-lote {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #020814;
+  margin-bottom: 5px;
+  letter-spacing: -2px;
+}
+
+.ticket-promo {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 5px;
+  color: #555;
+  display: block;
+}
+
+.ticket-barcode {
+  margin: 25px 0;
+  opacity: 0.8;
+}
+
+.ticket-action-text {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #020814;
+  margin-bottom: 25px;
+  line-height: 1.2;
+}
+
+/* Lista de entregáveis estilo check verde */
+.ticket-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  text-align: left;
+}
+
+.ticket-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.ticket-list li:last-child {
+  border-bottom: none;
+}
+
+.ticket-list li svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Preço e Botão */
+.pricing-area-ticket {
+  margin-bottom: 20px;
+}
+
+.new-price-ticket {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #020814;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.cash-price-ticket {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.secure-payment-ticket {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #22c55e;
+  font-weight: 800;
+}
+
+/* Responsividade do Ticket */
+@media (max-width: 600px) {
+  .ticket-offer-section {
+    padding: 40px 15px 80px;
+  }
+  .title-gold {
+    font-size: 1.8rem;
+  }
+  .ticket-card {
+    padding: 50px 20px 30px 20px;
+  }
+  .ticket-lote {
+    font-size: 2.8rem;
+  }
+  .ticket-promo {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+  }
+  .new-price-ticket {
+    font-size: 2.2rem;
   }
 }
