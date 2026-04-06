@@ -1072,3 +1072,37 @@
     font-size: 2.2rem;
   }
 }
+/* =========================================
+   BOTÃO VOLTAR PARA A HOME (COMPUTADOR)
+   ========================================= */
+.btn-back-home {
+  position: absolute; /* Tira o botão do fluxo normal e faz ele flutuar */
+  top: -30px; /* Joga ele para cima do selo azul */
+  left: 0; /* Alinha perfeitamente à esquerda do texto */
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-back-home svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito Hover: O texto fica branco e a setinha anda para a esquerda */
+.btn-back-home:hover {
+  color: #ffffff;
+}
+
+.btn-back-home:hover svg {
+  transform: translateX(-5px);
+}
