@@ -76,6 +76,7 @@
   font-variant-numeric: tabular-nums;
   letter-spacing: 2px;
   font-size: 1rem;
+  color: #fff;
 }
 
 /* --- HERO SECTION REFORMULADA --- */
@@ -351,7 +352,7 @@
   grid-template-columns: repeat(2, 1fr);
   max-width: 800px; /* Impede que fiquem gigantes e esticados */
   margin: 0 auto; /* Centraliza no meio da tela */
-} 
+}
 
 .bonus-title {
   font-size: 1.5rem;
@@ -389,7 +390,7 @@
 }
 .author-grid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: 1fr 1fr; /* Foto maior e texto com mesmo tamanho */
   gap: 60px;
   align-items: center;
 }
@@ -404,6 +405,8 @@
   width: 100%;
   border-radius: 16px;
   display: block;
+  transform: scale(1.1); /* 1.1 = 10% maior | 1.2 = 20% maior */
+  transform-origin: center; /* Mantém ela centralizada ao crescer */
 }
 
 /* --- OFFER SECTION & GARANTIA --- */
@@ -971,8 +974,84 @@
   font-weight: 800;
 }
 
-/* Responsividade do Ticket */
+/* =========================================
+   BOTÃO VOLTAR PARA A HOME (COMPUTADOR)
+   ========================================= */
+.btn-back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-back-home svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito Hover: O texto fica branco e a setinha anda para a esquerda */
+.btn-back-home:hover {
+  color: #ffffff;
+}
+
+.btn-back-home:hover svg {
+  transform: translateX(-5px);
+}
+
+/* =========================================
+   RESPONSIVIDADE (CELULAR E TABLETS PEQUENOS)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Ajuste do botão de Voltar para Celular (Apenas a Setinha) */
+  .btn-back-home {
+    display: flex;
+    position: absolute !important; /* Faz a seta flutuar solta na tela */
+    top: 15px !important; /* Distância exata do teto */
+    left: 20px !important; /* Distância da parede esquerda */
+    z-index: 99 !important; /* Garante que ela fique POR CIMA da foto do Lucas */
+    margin: 0 !important;
+    background: rgba(255, 255, 255, 0.15); /* Fundo um pouquinho mais forte */
+    backdrop-filter: blur(
+      5px
+    ); /* Dá um efeito de vidro se passar por cima da foto */
+    -webkit-backdrop-filter: blur(5px);
+    padding: 10px;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  /* Esconde o texto no celular */
+  .back-text {
+    display: none;
+  }
+
+  /* Garante que o ícone fique centralizado no círculo */
+  .btn-back-home svg {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+  }
+
+  /* Força a grade de 2 cartões de bônus a empilhar no celular */
+  .bonus-grid.two-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 600px) {
+  /* Responsividade do Ticket */
   .ticket-offer-section {
     padding: 40px 15px 80px;
   }
